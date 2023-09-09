@@ -111,6 +111,7 @@ export default {
           })
           .then((response) => {
             localStorage.setItem("TrainSys_login_name", response.data.name)
+            localStorage.setItem("TrainSys_login_token", response.data.token)
 
             this.$router.push('/dashboard')
           })
