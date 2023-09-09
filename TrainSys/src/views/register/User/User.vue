@@ -10,10 +10,10 @@
       <div class="container-box-left">
 
         <div class="register">
-          <h1 class="text-center mb-3">Conecte-se!</h1>
+          <h1 class="text-center mb-4">Já tem uma conta? Conecte-se!</h1>
           <p class="mb-4 ml-4">Para se manter conectado conosco, faça login com suas informações pessoais previamente cadastradas</p>
           <router-link to="/">
-            <v-btn class="btn-register" color="black" size="large" variant="outlined" prepend-icon="mdi-lock-outline">Login</v-btn>
+            <v-btn class="btn-register" title="Retornar a tela de login" color="black" size="large" variant="outlined" prepend-icon="mdi-lock-outline">Login</v-btn>
           </router-link>
         </div>
 
