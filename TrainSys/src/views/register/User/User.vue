@@ -56,6 +56,7 @@
 <script>
 import * as yup from 'yup'
 import { captureErrorYup } from '../../../utils/captureErrorYup'
+import axios from 'axios'
 
 export default {
   data() {
@@ -106,6 +107,24 @@ export default {
           },
           { abortEarly:false }
         )
+
+        axios ({
+          url: 'http://localhost:3000/users',
+          method: 'POST',
+          data: {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            type_plan: this.type_plan
+          }
+          })
+          .then(() => {
+            alert('Usuário cadastrado com sucesso!')
+            this.$router.push('/')
+          })
+          .catch(() => {
+            alert('Não foi possível criar a conta nesse momento, por favor, tente novamente mais tarde.')})
+
       } catch (error) {
           if (error instanceof yup.ValidationError) {
             console.log(error)
