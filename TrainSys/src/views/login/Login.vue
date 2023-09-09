@@ -1,12 +1,13 @@
 <template>
   <h1>Login</h1>
 
-  <v-form @submit.prevent="handleSubmitUser">
+  <v-form @submit.prevent="handleSubmitLogin">
     <v-text-field
     label="Email" 
     placeholder="Insira o email" 
     type="email"
     v-model="email"
+    :error-messages="this.errorValidation.email"
     variant="outlined"
     />
 
@@ -15,6 +16,7 @@
     placeholder="Insira a senha"
     v-model="password"
     :type="passwordVisibility ? 'text' : 'password'"
+    :error-messages="this.errorValidation.password"
     variant="outlined"
     :append-inner-icon="passwordVisibility ? 'mdi-eye-off' : 'mdi-eye'"
     @click:append-inner="passwordVisibility = !passwordVisibility"
@@ -29,6 +31,8 @@
 </template>
 
 <script>
+import * as yup from 'yup'
+import { captureErrorYup } from '../../utils/captureErrorYup'
 
 export default {
   data() {
@@ -36,6 +40,32 @@ export default {
       email: "",
       password: "",
       passwordVisibility: false,
+
+      errorValidation: {},
+    }
+  },
+
+  methods: {
+    handleSubmitLogin() {
+      try {
+        const schema = yup.object().shape({
+          email: yup.string().email('O Email inserido não é valido').required('O email é obrigatório'),
+          password: yup.string().required('A senha é obrigatória'),
+        })
+        schema.validateSync (
+          {
+            email: this.email,
+            password: this.password,
+          },
+          { abortEarly:false }
+        )
+      } catch (error) {
+          if (error instanceof yup.ValidationError) {
+            console.log(error)
+
+            this.errorValidation = captureErrorYup(error)
+          }
+        }
     }
   }
 }
