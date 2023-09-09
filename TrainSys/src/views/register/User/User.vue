@@ -1,61 +1,92 @@
 <template>
-  <h1>Crie sua conta</h1>
-    <v-form @submit.prevent="handleSubmitUser">
-      <v-text-field
-      label="Nome completo" 
-      placeholder="Insira o nome completo" 
-      type="text"
-      v-model="name"
-      :error-messages="this.errorValidation.name"
-      variant="outlined" 
-      />
-  
-      <v-text-field
-      label="Email" 
-      placeholder="Insira o email" 
-      type="email"
-      v-model="email"
-      :error-messages="this.errorValidation.email"
-      variant="outlined"
-      />
-  
-      <v-text-field
-      label="Senha"
-      placeholder="Insira a senha"
-      v-model="password"
-      :type="passwordVisibility ? 'text' : 'password'"
-      :error-messages="this.errorValidation.password"
-      variant="outlined"
-      :append-inner-icon="passwordVisibility ? 'mdi-eye-off' : 'mdi-eye'"
-      @click:append-inner="passwordVisibility = !passwordVisibility"
-      />
+  <div class="container">
 
-      <v-text-field
-      label="Confirme a senha" 
-      placeholder="Insira a senha novamente" 
-      :type="passwordConfirmationVisibility ? 'text' : 'password'"
-      v-model="passwordConfirmation"
-      :error-messages="this.errorValidation.passwordConfirmation"
-      variant="outlined"
-      :append-inner-icon="passwordConfirmationVisibility ? 'mdi-eye-off' : 'mdi-eye'"
-      @click:append-inner="passwordConfirmationVisibility = !passwordConfirmationVisibility"
-      />
-  
-      <v-select
-      label="Qual o plano?" 
-      placeholder="Escolha o plano que deseja" 
-      :items="plans" 
-      item-title="plan" 
-      item-value="value" 
-      type="text"
-      v-model="type_plan"
-      :error-messages="this.errorValidation.type_plan"
-      variant="outlined"
-      />
-          
-      <v-btn type="submit">Cadastrar</v-btn>
+    <div class="header d-flex">
+      <v-icon class="icon mt-4 ms-5" icon="mdi-weight-lifter" size="small"></v-icon>
+      <p class="title mt-3" >rainSys</p>    
+    </div>
 
-    </v-form>
+    <div class="container-box">
+      <div class="container-box-left">
+
+        <div class="register">
+          <h1 class="text-center mb-3">Conecte-se!</h1>
+          <p class="mb-4 ml-4">Para se manter conectado conosco, faça login com suas informações pessoais previamente cadastradas</p>
+          <router-link to="/">
+            <v-btn class="btn-register" color="black" size="large" variant="outlined" prepend-icon="mdi-lock-outline">Login</v-btn>
+          </router-link>
+        </div>
+
+      </div>
+      <div class="container-box-right">
+        <div>
+          <h1 class="subtitle mx-2">Crie sua conta</h1>
+        </div>
+
+        <div class="form">
+          <v-form @submit.prevent="handleSubmitUser">
+          <v-text-field
+          label="Nome completo" 
+          placeholder="Insira o nome completo" 
+          type="text"
+          v-model="name"
+          :error-messages="this.errorValidation.name"
+          variant="outlined" 
+          class="mb-1"
+          />
+      
+          <v-text-field
+          label="Email" 
+          placeholder="Insira o email" 
+          type="email"
+          v-model="email"
+          :error-messages="this.errorValidation.email"
+          variant="outlined"
+          class="mb-1"
+          />
+      
+          <v-text-field
+          label="Senha"
+          placeholder="Insira a senha"
+          v-model="password"
+          :type="passwordVisibility ? 'text' : 'password'"
+          :error-messages="this.errorValidation.password"
+          variant="outlined"
+          :append-inner-icon="passwordVisibility ? 'mdi-eye-off' : 'mdi-eye'"
+          @click:append-inner="passwordVisibility = !passwordVisibility"
+          class="mb-1"
+          />
+
+          <v-text-field
+          label="Confirme a senha" 
+          placeholder="Insira a senha novamente" 
+          :type="passwordConfirmationVisibility ? 'text' : 'password'"
+          v-model="passwordConfirmation"
+          :error-messages="this.errorValidation.passwordConfirmation"
+          variant="outlined"
+          :append-inner-icon="passwordConfirmationVisibility ? 'mdi-eye-off' : 'mdi-eye'"
+          @click:append-inner="passwordConfirmationVisibility = !passwordConfirmationVisibility"
+          class="mb-1"
+          />
+      
+          <v-select
+          label="Qual o plano?" 
+          placeholder="Escolha o plano que deseja" 
+          :items="plans" 
+          item-title="plan" 
+          item-value="value" 
+          type="text"
+          v-model="type_plan"
+          :error-messages="this.errorValidation.type_plan"
+          variant="outlined"
+          />
+              
+          <v-btn class="btn" size="large" type="submit">Cadastrar</v-btn>
+        </v-form>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -143,3 +174,109 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .container {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url(../../../images/background.jpg);
+    background-size: 100%;
+  }
+
+  .container-box {
+    width: 70%;
+    height: 80vh;
+
+    display: flex;
+  }
+
+  .container-box-left {
+    width: 40%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    backdrop-filter: blur(10px);
+  }
+
+  .container-box-right{
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fff;
+    border: 2px solid rgba(255, 255, 255, .5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .title {
+    display: flex;
+    margin-left: -10px;
+
+    font-size: 40px;
+    font-family: 'Black Ops One';
+
+    color: white;
+  }
+
+  .icon {
+    margin-left: -10px;
+
+    font-size: 40px;
+    font-family: 'Black Ops One';
+
+    color: #1337B4;
+  }
+
+  .register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-register {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .btn-register:hover {
+    background: linear-gradient(80deg, #1976D2, #1337B4);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  }
+  .form {
+    width: 50%;
+  }
+  .btn {
+    width: 100%;
+    margin-top: -12px;
+
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 18px;
+
+    background: linear-gradient(80deg, #1976D2, #1337B4);
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: black;
+    color: white;
+    box-shadow: 0 0 30px rgba(19, 55, 180, .5);
+  }
+
+</style>
