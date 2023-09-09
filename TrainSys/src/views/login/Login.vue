@@ -33,6 +33,7 @@
 <script>
 import * as yup from 'yup'
 import { captureErrorYup } from '../../utils/captureErrorYup'
+import axios from 'axios'
 
 export default {
   data() {
@@ -59,6 +60,23 @@ export default {
           },
           { abortEarly:false }
         )
+
+        axios ({
+          url: 'http://localhost:3000/sessions',
+          method: 'POST',
+          data: {
+            email: this.email,
+            password: this.password,
+          }
+          })
+          .then((response) => {
+            localStorage.setItem("TrainSys_login_name", response.data.name)
+
+            this.$router.push('/dashboard')
+          })
+          .catch(() => {
+            alert('Usuário e/ou senha incorretos! Tente novamente ou clique em cadastre-se para criar uma conta.')})
+
       } catch (error) {
           if (error instanceof yup.ValidationError) {
             console.log(error)
