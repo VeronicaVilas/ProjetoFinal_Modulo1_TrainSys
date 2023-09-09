@@ -1,11 +1,12 @@
 <template>
   <h1>Crie sua conta</h1>
-    <v-form>
+    <v-form @submit.prevent="handleSubmitUser">
       <v-text-field
       label="Nome completo" 
       placeholder="Insira o nome completo" 
       type="text"
       v-model="name"
+      :error-messages="this.errorValidation.name"
       variant="outlined" 
       />
   
@@ -14,6 +15,7 @@
       placeholder="Insira o email" 
       type="email"
       v-model="email"
+      :error-messages="this.errorValidation.email"
       variant="outlined"
       />
   
@@ -22,6 +24,7 @@
       placeholder="Insira a senha" 
       type="password"
       v-model="password"
+      :error-messages="this.errorValidation.password"
       variant="outlined"
       />
   
@@ -30,6 +33,7 @@
       placeholder="Insira a senha novamente" 
       type="password"
       v-model="passwordConfirmation"
+      :error-messages="this.errorValidation.passwordConfirmation"
       variant="outlined"
       />
   
@@ -40,6 +44,8 @@
       item-title="plan" 
       item-value="value" 
       type="text"
+      v-model="type_plan"
+      :error-messages="this.errorValidation.type_plan"
       variant="outlined"
       />
           
@@ -48,6 +54,9 @@
 </template>
 
 <script>
+import * as yup from 'yup'
+import { captureErrorYup } from '../../../utils/captureErrorYup'
+
 export default {
   data() {
     return {
@@ -62,6 +71,48 @@ export default {
         {plan: 'Prata', value: 'silver'},
         {plan: 'Ouro', value: 'gold'},
       ],
+
+      errorValidation: {}
+    }
+  },
+
+  methods: {
+    handleSubmitUser() {
+      try {
+        const schema = yup.object().shape({
+          name: yup
+          .string()
+          .min(2, 'O nome precisa ser maior que 2 caracteres')
+          .required('O nome é obrigatório'),
+          email: yup.string().email('O Email inserido não é valido').required('O email é obrigatório'),
+          password: yup
+            .string()
+            .min(8, 'A senha precisa ser maior que 8 caracteres')
+            .max(20, 'A senha precia ter entre 8 e 20 caracteres')
+            .required('A senha é obrigatória'),
+          passwordConfirmation: yup
+            .string()
+            .required('A confirmação da senha necessária')
+            .oneOf([yup.ref('password')], 'As senhas devem coincidir'),
+          type_plan: yup.string().required('A escolha do plano é obrigatória'),
+        })
+        schema.validateSync (
+          {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            passwordConfirmation: this.passwordConfirmation,
+            type_plan: this.type_plan
+          },
+          { abortEarly:false }
+        )
+      } catch (error) {
+          if (error instanceof yup.ValidationError) {
+            console.log(error)
+
+            this.errorValidation = captureErrorYup(error)
+          }
+      }
     }
   }
 }
