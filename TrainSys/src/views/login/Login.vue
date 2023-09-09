@@ -1,33 +1,73 @@
 <template>
-  <h1>Login</h1>
+  <div class="container">
+    <div class="logo d-flex">
+      <v-icon class="logo-icon mt-4 ms-5" icon="mdi-weight-lifter" size="small"></v-icon>
+      <p class="logo-title mt-3" >rainSys</p>    
+    </div>
 
-  <v-form @submit.prevent="handleSubmitLogin">
-    <v-text-field
-    label="Email" 
-    placeholder="Insira o email" 
-    type="email"
-    v-model="email"
-    :error-messages="this.errorValidation.email"
-    variant="outlined"
-    />
+    <div class="container-box">
+      <div class="container-box-left">
 
-    <v-text-field
-    label="Senha"
-    placeholder="Insira a senha"
-    v-model="password"
-    :type="passwordVisibility ? 'text' : 'password'"
-    :error-messages="this.errorValidation.password"
-    variant="outlined"
-    :append-inner-icon="passwordVisibility ? 'mdi-eye-off' : 'mdi-eye'"
-    @click:append-inner="passwordVisibility = !passwordVisibility"
-    />    
+        <h1 class="mb-8">Crie sua conta</h1>
 
-    <v-btn class="button-form" size="large" type="submit">Entrar</v-btn>
-  </v-form>
+        <div class="form">
+          <v-form @submit.prevent="handleSubmitLogin">
+            <v-text-field
+            label="Email" 
+            placeholder="Insira o email" 
+            type="email"
+            v-model="email"
+            :error-messages="this.errorValidation.email"
+            prepend-inner-icon="mdi-email-outline"
+            variant="outlined"
+            class="mb-2"
+            />
 
-  <p class="mb-2">Ainda não tem conta? 
-    <router-link to="/cadastro/usuario" class="register"> Cadastre-se</router-link>
-  </p>
+            <v-text-field
+            label="Senha"
+            placeholder="Insira a senha"
+            v-model="password"
+            :type="passwordVisibility ? 'text' : 'password'"
+            :error-messages="this.errorValidation.password"
+            prepend-inner-icon="mdi-lock-outline"
+            variant="outlined"
+            :append-inner-icon="passwordVisibility ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append-inner="passwordVisibility = !passwordVisibility"
+            class="mb-2"
+            />    
+
+            <v-btn class="button-form" size="large" type="submit">Entrar</v-btn>
+          </v-form>
+        </div>
+      </div>
+      <div class="container-box-right">
+
+        <div class="register">
+
+          <h1 class="text-center mb-4">Ainda não tem uma conta? Cadastre-se!</h1>
+
+          <p class="mb-4 ml-4">
+            A TrainSys é um site voltado para auxiliar os intrutores de academia na administração dos treinamentos 
+            de seus alunos. 
+            Cadastre-se e venha fazer parte do time.
+          </p>
+
+          <router-link to="/cadastro/usuario">
+            <v-btn 
+            class="button-register" 
+            title="Ir a tela de cadastro" 
+            color="black" 
+            size="large" 
+            variant="outlined" 
+            prepend-icon="mdi-account-multiple-plus">
+            Cadastre-se
+          </v-btn>
+          </router-link>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -88,3 +128,108 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .container {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url(../../images/background.jpg);
+    background-size: 100%;
+  }
+
+  .container-box {
+    width: 70%;
+    height: 80vh;
+
+    display: flex;
+  }
+
+  .container-box-right {
+    width: 40%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    backdrop-filter: blur(10px);
+  }
+
+  .container-box-left{
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fff;
+    border: 2px solid rgba(255, 255, 255, .5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  }
+
+  .logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .logo-title {
+    display: flex;
+    margin-left: -10px;
+
+    font-size: 40px;
+    font-family: 'Black Ops One';
+
+    color: white;
+  }
+
+  .logo-icon {
+    margin-left: -10px;
+
+    font-size: 40px;
+    font-family: 'Black Ops One';
+
+    color: #1337B4;
+  }
+
+  .register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .button-register {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .button-register:hover {
+    background: linear-gradient(80deg, #1976D2, #1337B4);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  }
+  .form {
+    width: 50%;
+  }
+  .button-form {
+    width: 100%;
+
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 18px;
+
+    background: linear-gradient(80deg, #1976D2, #1337B4);
+    cursor: pointer;
+  }
+
+  .button-form:hover {
+    background: black;
+    color: white;
+    box-shadow: 0 0 30px rgba(19, 55, 180, .5);
+  }
+
+</style>
