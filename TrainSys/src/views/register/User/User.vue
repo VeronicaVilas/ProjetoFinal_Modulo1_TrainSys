@@ -1,9 +1,9 @@
 <template>
   <div class="container">
 
-    <div class="header d-flex">
-      <v-icon class="icon mt-4 ms-5" icon="mdi-weight-lifter" size="small"></v-icon>
-      <p class="title mt-3" >rainSys</p>    
+    <div class="logo d-flex">
+      <v-icon class="logo-icon mt-4 ms-5" icon="mdi-weight-lifter" size="small"></v-icon>
+      <p class="logo-title mt-3" >rainSys</p>    
     </div>
 
     <div class="container-box">
@@ -13,76 +13,76 @@
           <h1 class="text-center mb-4">Já tem uma conta? Conecte-se!</h1>
           <p class="mb-4 ml-4">Para se manter conectado conosco, faça login com suas informações pessoais previamente cadastradas</p>
           <router-link to="/">
-            <v-btn class="btn-register" title="Retornar a tela de login" color="black" size="large" variant="outlined" prepend-icon="mdi-lock-outline">Login</v-btn>
+            <v-btn class="button-register" title="Retornar a tela de login" color="black" size="large" variant="outlined" prepend-icon="mdi-lock-outline">Login</v-btn>
           </router-link>
         </div>
 
       </div>
+
       <div class="container-box-right">
-        <div>
-          <h1 class="subtitle mx-2">Crie sua conta</h1>
-        </div>
+
+        <h1 class="subtitle mx-2">Crie sua conta</h1>
 
         <div class="form">
           <v-form @submit.prevent="handleSubmitUser">
-          <v-text-field
-          label="Nome completo" 
-          placeholder="Insira o nome completo" 
-          type="text"
-          v-model="name"
-          :error-messages="this.errorValidation.name"
-          variant="outlined" 
-          class="mb-1"
-          />
-      
-          <v-text-field
-          label="Email" 
-          placeholder="Insira o email" 
-          type="email"
-          v-model="email"
-          :error-messages="this.errorValidation.email"
-          variant="outlined"
-          class="mb-1"
-          />
-      
-          <v-text-field
-          label="Senha"
-          placeholder="Insira a senha"
-          v-model="password"
-          :type="passwordVisibility ? 'text' : 'password'"
-          :error-messages="this.errorValidation.password"
-          variant="outlined"
-          :append-inner-icon="passwordVisibility ? 'mdi-eye-off' : 'mdi-eye'"
-          @click:append-inner="passwordVisibility = !passwordVisibility"
-          class="mb-1"
-          />
+            <v-text-field
+            label="Nome completo" 
+            placeholder="Insira o nome completo" 
+            type="text"
+            v-model="name"
+            :error-messages="this.errorValidation.name"
+            variant="outlined" 
+            class="mb-1"
+            />
+        
+            <v-text-field
+            label="Email" 
+            placeholder="Insira o email" 
+            type="email"
+            v-model="email"
+            :error-messages="this.errorValidation.email"
+            variant="outlined"
+            class="mb-1"
+            />
+        
+            <v-text-field
+            label="Senha"
+            placeholder="Insira a senha"
+            v-model="password"
+            :type="passwordVisibility ? 'text' : 'password'"
+            :error-messages="this.errorValidation.password"
+            variant="outlined"
+            :append-inner-icon="passwordVisibility ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append-inner="passwordVisibility = !passwordVisibility"
+            class="mb-1"
+            />
 
-          <v-text-field
-          label="Confirme a senha" 
-          placeholder="Insira a senha novamente" 
-          :type="passwordConfirmationVisibility ? 'text' : 'password'"
-          v-model="passwordConfirmation"
-          :error-messages="this.errorValidation.passwordConfirmation"
-          variant="outlined"
-          :append-inner-icon="passwordConfirmationVisibility ? 'mdi-eye-off' : 'mdi-eye'"
-          @click:append-inner="passwordConfirmationVisibility = !passwordConfirmationVisibility"
-          class="mb-1"
-          />
-      
-          <v-select
-          label="Qual o plano?" 
-          placeholder="Escolha o plano que deseja" 
-          :items="plans" 
-          item-title="plan" 
-          item-value="value" 
-          type="text"
-          v-model="type_plan"
-          :error-messages="this.errorValidation.type_plan"
-          variant="outlined"
-          />
-              
-          <v-btn class="btn" size="large" type="submit">Cadastrar</v-btn>
-        </v-form>
+            <v-text-field
+            label="Confirme a senha" 
+            placeholder="Insira a senha novamente" 
+            :type="passwordConfirmationVisibility ? 'text' : 'password'"
+            v-model="passwordConfirmation"
+            :error-messages="this.errorValidation.passwordConfirmation"
+            variant="outlined"
+            :append-inner-icon="passwordConfirmationVisibility ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append-inner="passwordConfirmationVisibility = !passwordConfirmationVisibility"
+            class="mb-1"
+            />
+        
+            <v-select
+            label="Qual o plano?" 
+            placeholder="Escolha o plano que deseja" 
+            :items="plans" 
+            item-title="plan" 
+            item-value="value" 
+            type="text"
+            v-model="type_plan"
+            :error-messages="this.errorValidation.type_plan"
+            variant="outlined"
+            />
+                
+            <v-btn class="button-form" size="large" type="submit">Cadastrar</v-btn>
+          </v-form>
         </div>
       </div>
     </div>
@@ -169,7 +169,7 @@ export default {
 
             this.errorValidation = captureErrorYup(error)
           }
-      }
+        }
     }
   }
 }
@@ -220,13 +220,13 @@ export default {
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   }
 
-  .header {
+  .logo {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
   }
-  .title {
+  .logo-title {
     display: flex;
     margin-left: -10px;
 
@@ -236,7 +236,7 @@ export default {
     color: white;
   }
 
-  .icon {
+  .logo-icon {
     margin-left: -10px;
 
     font-size: 40px;
@@ -250,18 +250,18 @@ export default {
     flex-direction: column;
     align-items: center;
   }
-  .btn-register {
+  .button-register {
     font-weight: bold;
     cursor: pointer;
   }
-  .btn-register:hover {
+  .button-register:hover {
     background: linear-gradient(80deg, #1976D2, #1337B4);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   }
   .form {
     width: 50%;
   }
-  .btn {
+  .button-form {
     width: 100%;
     margin-top: -12px;
 
@@ -273,7 +273,7 @@ export default {
     cursor: pointer;
   }
 
-  .btn:hover {
+  .button-form:hover {
     background: black;
     color: white;
     box-shadow: 0 0 30px rgba(19, 55, 180, .5);
