@@ -20,21 +20,25 @@
       />
   
       <v-text-field
-      label="Senha" 
-      placeholder="Insira a senha" 
-      type="password"
+      label="Senha"
+      placeholder="Insira a senha"
       v-model="password"
+      :type="passwordVisibility ? 'text' : 'password'"
       :error-messages="this.errorValidation.password"
       variant="outlined"
+      :append-inner-icon="passwordVisibility ? 'mdi-eye-off' : 'mdi-eye'"
+      @click:append-inner="passwordVisibility = !passwordVisibility"
       />
-  
+
       <v-text-field
       label="Confirme a senha" 
       placeholder="Insira a senha novamente" 
-      type="password"
+      :type="passwordConfirmationVisibility ? 'text' : 'password'"
       v-model="passwordConfirmation"
       :error-messages="this.errorValidation.passwordConfirmation"
       variant="outlined"
+      :append-inner-icon="passwordConfirmationVisibility ? 'mdi-eye-off' : 'mdi-eye'"
+      @click:append-inner="passwordConfirmationVisibility = !passwordConfirmationVisibility"
       />
   
       <v-select
@@ -50,6 +54,7 @@
       />
           
       <v-btn type="submit">Cadastrar</v-btn>
+
     </v-form>
 </template>
 
@@ -73,7 +78,9 @@ export default {
         {plan: 'Ouro', value: 'gold'},
       ],
 
-      errorValidation: {}
+      errorValidation: {},
+      passwordVisibility: false,
+      passwordConfirmationVisibility: false
     }
   },
 
