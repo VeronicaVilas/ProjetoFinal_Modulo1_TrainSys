@@ -1,11 +1,15 @@
 <template>
-  <h1>Cadastro de alunos</h1>
 
-  <hr>
+  <div class="d-flex">
+    <v-icon class="icon mt-7 ms-5" icon="mdi-account-group" size="x-large"></v-icon>
+    <h1 class="title mt-13 ml-2">Cadastro de alunos</h1>
+  </div>
+
+  <hr class="student-line">
 
   <v-form @submit.prevent="handleSubmitNewStudent">
 
-    <div >
+    <div class="d-flex ma-2 mt-6">
 
     <v-text-field
     label="Nome completo" 
@@ -14,6 +18,7 @@
     v-model="name"
     :error-messages="this.errorValidation.name"
     variant="outlined" 
+    class="w-25 px-2 mb-3"
     />
 
     <v-text-field
@@ -23,6 +28,7 @@
     v-model="email"
     :error-messages="this.errorValidation.email"
     variant="outlined"
+    class="w-25 px-2 mb-3"
     />
 
     <v-text-field
@@ -32,6 +38,7 @@
     v-model="contact"
     :error-messages="this.errorValidation.contact"
     variant="outlined"
+    class="w-25 px-2 mb-3"
     />
 
     <v-text-field
@@ -42,14 +49,16 @@
     v-model="date_birth"
     :error-messages="this.errorValidation.date_birth"
     variant="outlined"
+    class="w-25 px-2 mb-3"
     />
     </div>
 
-    <p>Endereço:</p>
+    <p class="subtitle ml-6">Endereço:</p>
 
     <hr>
 
-    <div>
+    <div class="d-flex flex-wrap ma-2 mt-6">
+      
       <v-text-field
       label="CEP" 
       placeholder="CEP" 
@@ -57,8 +66,10 @@
       v-model="cep"
       :error-messages="this.errorValidation.cep"
       variant="outlined"
+      class="w-15 ps-2 mb-3"
       />
-      <v-btn prepend-icon="mdi-magnify" @click="searchAddress"></v-btn>
+
+      <v-btn class="button-search" :height="55" size="small" prepend-icon="mdi-magnify" @click="searchAddress"></v-btn>
 
       <v-text-field
       label="Logradouro" 
@@ -67,6 +78,7 @@
       v-model="street"
       :error-messages="this.errorValidation.street"
       variant="outlined"
+      class="w-25 px-2 mb-3"
       />
 
       <v-text-field
@@ -76,6 +88,7 @@
       v-model="number"
       :error-messages="this.errorValidation.number"
       variant="outlined"
+      class="w-25 px-2 mb-3"
       />
 
       <v-text-field
@@ -85,6 +98,7 @@
       v-model="neighborhood"
       :error-messages="this.errorValidation.neighborhood"
       variant="outlined"
+      class="w-25 px-2 mb-3"
       />
 
       <v-text-field
@@ -94,6 +108,7 @@
       v-model="city"
       :error-messages="this.errorValidation.city"
       variant="outlined"
+      class="w-25 px-2 mb-3"
       />
 
       <v-text-field
@@ -103,6 +118,7 @@
       v-model="province"
       :error-messages="this.errorValidation.province"
       variant="outlined"
+      class="w-25 px-2 mb-3"
       />
 
       <v-text-field
@@ -110,11 +126,12 @@
       type="text"
       v-model="complement"
       variant="outlined"
+      class="w-25 px-2 mb-3"
       />
     </div>
 
-    <div>
-      <v-btn size="x-large" type="submit">Cadastrar</v-btn>
+    <div class="d-flex justify-center">
+      <v-btn class="button d-flex ml-5" size="x-large" type="submit">Cadastrar</v-btn>
     </div>
     </v-form>
 </template>
@@ -169,7 +186,7 @@ export default {
           name: yup.string().required('O nome é obrigatório'),
           email: yup.string().email('O email não é valido'),
           contact: yup.string().required('O telefone é obrigatório'),
-          date_birth: yup.date('').max(new Date(), 'A data de nascimento não pode ser no futuro'),
+          date_birth: yup.date().max(new Date(), 'A data de nascimento não pode ser no futuro'),
           cep: yup.string().required('O CEP é obrigatório'),
           number: yup.string().required('O número da residência é obrigatório'),
           street: yup.string().required('O logradouro é obrigatório'),
@@ -238,3 +255,46 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.title {
+  text-transform: uppercase;
+  font-size: 32px;
+}
+
+.student-line{
+  border: 1px solid;
+}
+
+.icon {
+  font-size: 70px;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #999999;
+}
+.button-search {
+  font-size: 24px;
+
+  background: linear-gradient(80deg, #1976D2, #1337B4);
+  cursor: pointer;
+}
+.button {
+  width: 300px;
+
+  text-transform: lowercase;
+  font-weight: bold;
+  font-size: 18px;
+
+  background-color: #1337B4;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: black;
+  color: white;
+  box-shadow: 0 0 30px rgba(19, 55, 180, .5);
+}
+</style>
