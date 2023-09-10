@@ -13,9 +13,8 @@
     type="text"
     v-model="name"
     variant="outlined"
+    :append-inner-icon="'mdi-account-search'"
     />
-
-    <v-btn size="x-large" prepend-icon="mdi-account-search" type="submit">Buscar</v-btn>
   </v-form>
 
   <v-table>
@@ -27,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-      <tr v-for="student in studentsList" :key="student.id">
+      <tr v-for="student in searchNameStudentsList" :key="student.id">
         <td>{{ student.id }}</td>
         <td>{{ student.name }}</td>
         <td>
@@ -51,6 +50,18 @@ export default {
       studentsList: [],
       name: ""
     }
+  },
+
+  computed: {
+    searchNameStudentsList() {
+      const query = this.name.toLowerCase().trim();
+      if (!query) {
+        return this.studentsList;
+      }
+      return this.studentsList.filter((student) => {
+        return student.name.toLowerCase().includes(query);
+      });
+    },
   },
 
   mounted() {
