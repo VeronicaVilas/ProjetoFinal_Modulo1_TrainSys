@@ -20,6 +20,7 @@
       placeholder="Insira o número de repetições" 
       type="number"
       v-model="repetitions"
+      :error-messages="this.errorValidation.repetitions"
       class="w-25 px-2" variant="outlined" 
       />
   
@@ -29,6 +30,7 @@
       type="number"
       v-model="weight"
       suffix="kg"
+      :error-messages="this.errorValidation.weight"
       class="w-25 px-2" variant="outlined" 
       />
   
@@ -37,6 +39,7 @@
       placeholder="Insira o tempo da pausa" 
       type="time"
       v-model="break_time"
+      :error-messages="this.errorValidation.break_time"
       class="w-25 px-2" variant="outlined" 
       />
   
@@ -63,6 +66,8 @@
 </template>
 
 <script>
+import * as yup from 'yup'
+import { captureErrorYup } from '../../../utils/captureErrorYup'
 import axios from 'axios'
 
 export default {
@@ -85,8 +90,40 @@ export default {
       ],
       exercises: [],
       exercise_id: "",
+
+      errorValidation: {}
     }
   },
+
+  methods: {
+    handleSubmitTraining() {
+      try {
+        const schema = yup.object().shape({
+          repetitions: yup
+          .string()
+          .min(1, 'Insira no mínimo uma repetição')
+          .required('A escolha da repetição é obrigatório'),
+          weight: yup.string().required('A quantidade de peso é obrigatório'),
+          break_time: yup.string().required('O tempo de pausa é obrigatório'),
+        })
+        schema.validateSync (
+          {
+            repetitions: this.repetitions,
+            weight: this.weight,
+            break_time: this.break_time
+          },
+          { abortEarly:false }
+        )
+
+      } catch (error) {
+          if (error instanceof yup.ValidationError) {
+            console.log(error)
+
+            this.errorValidation = captureErrorYup(error)
+          }
+      }
+    }
+  }, 
 
   mounted() {
     axios ({
