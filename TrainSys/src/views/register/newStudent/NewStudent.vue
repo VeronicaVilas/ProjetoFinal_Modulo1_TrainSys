@@ -193,6 +193,40 @@ export default {
           { abortEarly:false }
         )
 
+        axios ({
+          url: 'http://localhost:3000/students',
+          method: 'POST',
+          data: {
+            name: this.name,
+            email: this.email,
+            contact: this.contact,
+            date_birth: this.date_birth,
+            cep: this.cep,
+            street: this.street,
+            number: this.number,
+            neighborhood: this.neighborhood,
+            city: this.city,
+            province: this.province,
+            complement: this.complement
+          }
+          })
+          .then(() => {
+            alert('Aluno cadastrado com sucesso!')
+
+            this.name = ''
+            this.email = ''
+            this.contact = ''
+            this.date_birth = ''
+            this.cep = ''
+            this.street = ''
+            this.number = ''
+            this.neighborhood = ''
+            this.city = ''
+            this.province = ''
+            this.complement = ''
+          })
+          .catch(() => {
+            alert('Não foi possível cadastrar o alunos nesse momento, por favor, tente novamente mais tarde.')})
       } catch (error) {
           if (error instanceof yup.ValidationError) {
             console.log(error)
