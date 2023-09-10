@@ -185,7 +185,11 @@ export default {
         const schema = yup.object().shape({
           name: yup.string().required('O nome é obrigatório'),
           email: yup.string().email('O email não é valido'),
-          contact: yup.string().required('O telefone é obrigatório'),
+          contact: yup
+          .string()
+          .min(9, 'O telefone não é valido')
+          .max(11, 'Insira somentes números sem caracteres especiais')
+          .required('O telefone é obrigatório'),
           date_birth: yup.date().max(new Date(), 'A data de nascimento não pode ser no futuro'),
           cep: yup.string().required('O CEP é obrigatório'),
           number: yup.string().required('O número da residência é obrigatório'),
