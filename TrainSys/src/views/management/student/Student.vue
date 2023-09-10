@@ -1,12 +1,18 @@
 <template>
-  <h1>Alunos</h1>
-  <router-link to="/cadastro/novo-aluno">
-    <v-btn prepend-icon="mdi-account-plus" type="submit">Novo</v-btn>
-  </router-link>
+  <div class="d-flex justify-space-between">
+    <div class="d-flex">
+      <img :width="100" src="../../../images/Students.png" alt="">
+      <h1 class="title mt-13 ml-2">Alunos</h1>
+    </div>
+
+    <router-link to="/cadastro/novo-aluno">
+      <v-btn class="button-newStudent mt-13 ma-2" title="Clique para cadastrar novo aluno"  size="large" prepend-icon="mdi-account-plus" type="submit">Novo</v-btn>
+    </router-link>
+  </div>
 
   <hr>
 
-  <v-form @submit.prevent="handleSubmitStudents">
+  <v-form  class="d-flex ma-2 mt-6" @submit.prevent="handleSubmitStudents">
     <v-text-field
     label=""
     placeholder="Insira o nome do aluno para pesquisar"
@@ -17,12 +23,12 @@
     />
   </v-form>
 
-  <v-table>
+  <v-table class="student-table" density="compact">
     <thead>
       <tr>
-        <th class="subtitle-table">Matrícula</th>
-        <th class="subtitle-table">Nome</th>
-        <th class="subtitle-table">Ações</th>
+        <th class="title-table">Matrícula</th>
+        <th class="title-table">Nome</th>
+        <th class="title-table">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -31,7 +37,10 @@
         <td>{{ student.name }}</td>
         <td>
           <v-btn 
-          title="Clique para moontar um treino" 
+          class="button-training mt-1 me-6"
+          color="black" 
+          variant="outlined"
+          title="Clique para montar um treino" 
           prepend-icon="mdi-dumbbell" 
           type="submit" 
           @click="() => redirectStudentInformationTraining(student)">
@@ -39,6 +48,7 @@
           </v-btn>
 
           <v-btn 
+          class="button-view"
           title="Vizualizar treino" 
           icon="mdi-eye-outline"
           variant="text" 
@@ -116,3 +126,52 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .title {
+    text-transform: uppercase;
+    font-size: 32px;
+  }
+
+  hr{
+    border: 1px solid;
+  }
+
+  .button-newStudent {
+    width: 120px;
+
+    font-weight: bold;
+    font-size: 18px;
+
+    background: linear-gradient(80deg, #1976D2, #1337B4);
+    cursor: pointer;
+  }
+
+  .button-newStudent:hover {
+    background: black;
+    color: white;
+    box-shadow: 0 0 30px rgba(19, 55, 180, .5);
+  }
+
+  .title-table {
+    font-size: 22px;
+    background:#1976D2;
+  }
+
+  .student-table tbody tr:nth-child(even) {
+    background-color: #E3F2FD;
+  }
+
+  .button-training {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .button-training:hover {
+    background: linear-gradient(80deg, #1976D2, #1337B4);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  }
+  .button-view {
+    color: black;
+  }
+
+</style>
