@@ -1,5 +1,12 @@
 <template>
-  <v-form @submit.prevent="handleSubmitExercise">
+  <div class="d-flex">
+    <img :width="100" src="../../../images/Weights.png" alt="">
+    <h1 class="title mt-13 ml-2">Exercícios</h1>
+  </div>
+
+  <hr>
+
+  <v-form class="d-flex ma-2 mt-6" @submit.prevent="handleSubmitExercise">
     <v-text-field
     label="" 
     placeholder="Insira o nome do exercício para cadastro" 
@@ -7,15 +14,16 @@
     v-model="description"
     :error-messages="this.errorValidation.description"
     variant="outlined"  
+    class="w-25 px-2"
     />
   
-    <v-btn type="submit">Cadastrar</v-btn>
+    <v-btn class="button" size="x-large" type="submit">Cadastrar</v-btn>
   </v-form>
   
-  <v-table >
+  <v-table density="compact">
     <thead>
       <tr>
-        <th>Nome</th>
+        <th class="subtitle-table">Nome</th>
       </tr>
     </thead>
     <tbody>
@@ -90,4 +98,35 @@ export default {
   }
 }
 </script>
-  
+
+<style scoped>
+.title {
+  text-transform: uppercase;
+  font-size: 32px;
+}
+
+hr{
+  border: 1px solid;
+}
+.button {
+  width: 200px;
+  height: 55px;
+
+  text-transform: lowercase;
+  font-weight: bold;
+  font-size: 18px;
+
+  background-color: #1337B4;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: black;
+  color: white;
+  box-shadow: 0 0 30px rgba(19, 55, 180, .5);
+}
+
+.subtitle-table {
+  font-size: 22px;
+}
+</style>
