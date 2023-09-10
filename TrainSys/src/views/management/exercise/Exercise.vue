@@ -77,6 +77,17 @@ export default {
       }
     }
   },
+
+  mounted() {
+    axios ({
+      url: 'http://localhost:3000/exercises',
+      method: 'GET',
+    })
+    .then((response) => {
+      this.exerciseList = response.data})
+    .catch(() => {
+      alert('Não foi possível carregar a lista de exercícios nesse momento, por favor, tente novamente mais tarde.')})
+  }
 }
 </script>
   
