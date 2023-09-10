@@ -23,3 +23,47 @@
   </header>
 </template>
 
+<style scoped>
+  .header {
+    height: 80px;
+
+    background: linear-gradient(800deg, #90CAF9, #42A5F5, #1976D2, #1337B4);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  }
+  .complement-header {
+    height: 72px;
+    background-image: url(../images/header.jpg);
+    background-size: 100%;
+  }
+
+  .position {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .logo-title {
+    display: flex;
+    margin-left: -10px;
+
+    font-size: 40px;
+    font-family: 'Black Ops One';
+
+    color: white;
+  }
+
+  .logo-icon {
+    margin-left: -10px;
+
+    font-size: 40px;
+    font-family: 'Black Ops One';
+
+    color: #1337B4;
+  }
+  .button-header{
+    color: white;
+  }
+  .button-header:hover {
+    background: linear-gradient(80deg, #1976D2, #1337B4);
+  }
+</style>
