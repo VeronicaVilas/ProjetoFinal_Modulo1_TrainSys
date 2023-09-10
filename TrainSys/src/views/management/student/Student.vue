@@ -6,7 +6,7 @@
 
   <hr>
 
-  <v-form>
+  <v-form @submit.prevent="handleSubmitStudents">
     <v-text-field
     label=""
     placeholder="Insira o nome do aluno para pesquisar"
@@ -27,9 +27,9 @@
         </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
+      <tr v-for="student in studentsList" :key="student.id">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
         <td>
           <v-btn title="Clique para moontar um treino" prepend-icon="mdi-dumbbell" type="submit" >
           Treinos
@@ -43,11 +43,27 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
+      studentsList: [],
       name: ""
     }
+  },
+
+  mounted() {
+    axios({
+      url: 'http://localhost:3000/students',
+      method: 'GET',
+    })
+    .then((response) => {
+      this.studentsList = response.data.students
+    })
+    .catch(() => {
+      alert('Não foi possível carregar a lista de alunos nesse momento, por favor, tente novamente mais tarde.');
+    });
   }
 }
 </script>
