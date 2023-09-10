@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title d-flex mt-8 ml-10">Olá, {{ usuario }}</h1>
+    <h1 class="d-flex mt-8 ml-10">Olá, {{ user }}</h1>
     <p class="ml-10">Seja bem vindo(a)! </p>
 
     <div class="d-flex">
@@ -13,11 +13,11 @@
           <v-card-text class="d-flex">
 
             <div>
-              <p class="subtitle my-1">Lista de alunos</p>
-              <p class="my-1">{{dashboard_infos.amount_students}} Alunos cadastrados</p>
+              <p class="card-title my-1">Lista de alunos</p>
+              <p class="my-1">{{dashboard_information.amount_students}} Alunos cadastrados</p>
               
               <router-link to="/gerenciamento/alunos">
-                <v-btn class="btn my-3 mt-5" size="large" type="submit">Vizualizar</v-btn>
+                <v-btn class="button-card my-3 mt-5" size="large" type="submit">Vizualizar</v-btn>
               </router-link>
             </div>
 
@@ -32,11 +32,11 @@
           <v-card-text class="d-flex">
 
             <div>
-              <p class="subtitle my-1">Cadastro de exercícios</p>
-              <p class="my-1">{{dashboard_infos.amount_exercises}} Exercicios cadastrados</p>
+              <p class="card-title my-1">Cadastro de exercícios</p>
+              <p class="my-1">{{dashboard_information.amount_exercises}} Exercicios cadastrados</p>
               
               <router-link to="/gerenciamento/exercicios">
-                <v-btn class="btn my-3 mt-5" size="large" type="submit">Adicionar</v-btn>
+                <v-btn class="button-card my-3 mt-5" size="large" type="submit">Adicionar</v-btn>
               </router-link>
             </div>
 
@@ -58,8 +58,8 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      usuario: localStorage.getItem("TrainSys_login_name"),
-      dashboard_infos: []
+      user: localStorage.getItem("TrainSys_login_name"),
+      dashboard_information: []
     }
   },
 
@@ -69,7 +69,7 @@ export default {
       method: 'GET',
       })
       .then((response) => {
-        this.dashboard_infos = response.data
+        this.dashboard_information = response.data
       })
         .catch(() => {
         alert('Não é possível carregar a página no momento! Por favor, tente novamente mais tarde.')
@@ -94,13 +94,13 @@ export default {
   margin-left: 140px;
 }
 
-.subtitle {
+.card-title {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 16px;
 }
 
-.btn {
+.button-card {
   width: 200px;
   height: 45px;
 
@@ -113,7 +113,7 @@ export default {
   cursor: pointer;
 }
 
-.btn:hover {
+.button-card:hover {
   background: black;
   color: white;
   box-shadow: 0 0 30px rgba(19, 55, 180, .5);
