@@ -58,6 +58,7 @@
       :error-messages="this.errorValidation.cep"
       variant="outlined"
       />
+      <v-btn prepend-icon="mdi-magnify" @click="searchAddress"></v-btn>
 
       <v-text-field
       label="Logradouro" 
@@ -121,6 +122,7 @@
 <script>
 import * as yup from 'yup'
 import { captureErrorYup } from '../../../utils/captureErrorYup'
+import axios from 'axios'
 
 export default {
   data() {
@@ -142,6 +144,25 @@ export default {
   },
 
   methods: {
+    searchAddress() {
+      axios({
+        url: `https://viacep.com.br/ws/${this.cep}/json/`,
+        method: 'GET',
+      })
+        .then((response) => {
+          this.data = response.data;
+
+          this.street = this.data.logradouro;
+          this.neighborhood = this.data.bairro;
+          this.city = this.data.localidade;
+          this.province = this.data.uf;
+
+          console.log(this.localidade);
+        })
+        .catch(() => {
+          alert('Não foi possível localizar o endereço. por favor, tente novamente.');
+        });
+      },
     handleSubmitNewStudent() {
       try {
         const schema = yup.object().shape({
