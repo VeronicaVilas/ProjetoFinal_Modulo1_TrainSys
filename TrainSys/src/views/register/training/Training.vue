@@ -3,7 +3,7 @@
     <p>Matrícula: {{ this.$route.params.id }}</p>
     <p>Nome: {{ this.$route.query.title }}</p>
   
-    <v-form>
+    <v-form @submit.prevent="handleSubmitTraining">
       <v-select
       label="Qual o exercício?" 
       placeholder="Escolha o exercicio" 
@@ -63,6 +63,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -85,5 +87,17 @@ export default {
       exercise_id: "",
     }
   },
+
+  mounted() {
+    axios ({
+      url: 'http://localhost:3000/exercises',
+      method: 'GET',
+      })
+      .then((response) => {
+        this.exercises = response.data
+      })
+      .catch(() => {
+        alert('Não foi possível carregar a lista de exercícios nesse momento, por favor, tente novamente mais tarde.')})
+    }
 }
 </script>
