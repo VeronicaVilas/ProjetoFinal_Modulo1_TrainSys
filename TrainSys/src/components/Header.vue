@@ -13,7 +13,7 @@
           </router-link>
 
           <router-link to="/cadastro/novo-aluno">
-            <v-btn class="button-header" :height="72" variant="text" prepend-icon="mdi-account">Cadastro de Alunos</v-btn>
+            <v-btn class="button-header" :height="72" variant="text" prepend-icon="mdi-account-group">Cadastro de Alunos</v-btn>
           </router-link>
 
           <router-link to="/">
