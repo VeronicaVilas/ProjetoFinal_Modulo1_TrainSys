@@ -78,7 +78,7 @@ export default {
       weight: "",
       break_time: "",
       observations: "",
-      day: "segunda",
+      day: this.getCurrentDay(),
       week:
       [
         {dayWeek: 'Segunda-feira', value: 'segunda'},
@@ -96,6 +96,23 @@ export default {
   },
 
   methods: {
+    getCurrentDay(){
+      const value = new Date().getDay()
+      
+      const daysWeek = [
+        {value: 'domingo', number: 0},
+        {value: 'segunda', number: 1},
+        {value: 'terça', number: 2},
+        {value: 'quarta', number: 3},
+        {value: 'quinta', number: 4},
+        {value: 'sexta', number: 5},
+        {value: 'sábado', number: 6}
+      ]
+      const option = daysWeek.find(item => item.number === value)
+
+      return option.value
+    },
+
     handleSubmitTraining() {
       try {
         const schema = yup.object().shape({
