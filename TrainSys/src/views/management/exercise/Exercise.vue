@@ -9,7 +9,7 @@
   <v-form class="d-flex ma-2 mt-6" @submit.prevent="handleSubmitExercise">
     <v-text-field
     label="" 
-    placeholder="Insira o nome do exercício para cadastro" 
+    placeholder="Insira o nome do exercício para cadastrar" 
     type="text"
     v-model="description"
     :error-messages="this.errorValidation.description"
@@ -20,7 +20,7 @@
     <v-btn class="button" size="x-large" type="submit">Cadastrar</v-btn>
   </v-form>
   
-  <v-table density="compact">
+  <v-table class="exercise-table" density="compact">
     <thead>
       <tr>
         <th class="subtitle-table">Nome</th>
@@ -116,7 +116,7 @@ hr{
   font-weight: bold;
   font-size: 18px;
 
-  background-color: #1337B4;
+  background: linear-gradient(80deg, #1976D2, #1337B4);
   cursor: pointer;
 }
 
@@ -126,7 +126,12 @@ hr{
   box-shadow: 0 0 30px rgba(19, 55, 180, .5);
 }
 
+
 .subtitle-table {
   font-size: 22px;
+  background: linear-gradient(80deg, #1976D2, #1337B4);
+}
+.exercise-table tbody tr:nth-child(even) {
+    background-color: #E3F2FD;
 }
 </style>
