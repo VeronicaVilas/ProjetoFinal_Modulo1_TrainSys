@@ -12,6 +12,7 @@
     placeholder="Insira o nome completo" 
     type="text"
     v-model="name"
+    :error-messages="this.errorValidation.name"
     variant="outlined" 
     />
 
@@ -20,6 +21,7 @@
     placeholder="Insira o email" 
     type="email"
     v-model="email"
+    :error-messages="this.errorValidation.email"
     variant="outlined"
     />
 
@@ -28,6 +30,7 @@
     placeholder="Insira o telefone para contato" 
     type="number"
     v-model="contact"
+    :error-messages="this.errorValidation.contact"
     variant="outlined"
     />
 
@@ -35,7 +38,9 @@
     label="Data de nascimento" 
     placeholder="Insira a data de nascimento" 
     type="date"
+    :max="new Date()"
     v-model="date_birth"
+    :error-messages="this.errorValidation.date_birth"
     variant="outlined"
     />
     </div>
@@ -50,6 +55,7 @@
       placeholder="CEP" 
       type="number"
       v-model="cep"
+      :error-messages="this.errorValidation.cep"
       variant="outlined"
       />
 
@@ -58,6 +64,7 @@
       placeholder="Logradouro" 
       type="text"
       v-model="street"
+      :error-messages="this.errorValidation.street"
       variant="outlined"
       />
 
@@ -66,6 +73,7 @@
       placeholder="Número da residência" 
       type="number"
       v-model="number"
+      :error-messages="this.errorValidation.number"
       variant="outlined"
       />
 
@@ -74,6 +82,7 @@
       placeholder="Bairro" 
       type="text"
       v-model="neighborhood"
+      :error-messages="this.errorValidation.neighborhood"
       variant="outlined"
       />
 
@@ -82,6 +91,7 @@
       placeholder="Cidade" 
       type="text"
       v-model="city"
+      :error-messages="this.errorValidation.city"
       variant="outlined"
       />
 
@@ -90,6 +100,7 @@
       placeholder="UF" 
       type="text"
       v-model="province"
+      :error-messages="this.errorValidation.province"
       variant="outlined"
       />
 
@@ -108,13 +119,16 @@
 </template>
 
 <script>
+import * as yup from 'yup'
+import { captureErrorYup } from '../../../utils/captureErrorYup'
+
 export default {
   data() {
     return {
       name: "",
       email: "",
       contact: "",
-      date_birth: "",
+      date_birth: new Date(),
       cep: "",
       number: "",
       complement: "",
@@ -122,7 +136,50 @@ export default {
       neighborhood: "",
       city: "",
       province: "",
+
+      errorValidation: {}
     }
   },
+
+  methods: {
+    handleSubmitNewStudent() {
+      try {
+        const schema = yup.object().shape({
+          name: yup.string().required('O nome é obrigatório'),
+          email: yup.string().email('O email não é valido'),
+          contact: yup.string().required('O telefone é obrigatório'),
+          date_birth: yup.date('').max(new Date(), 'A data de nascimento não pode ser no futuro'),
+          cep: yup.string().required('O CEP é obrigatório'),
+          number: yup.string().required('O número da residência é obrigatório'),
+          street: yup.string().required('O logradouro é obrigatório'),
+          neighborhood: yup.string().required('O bairro é obrigatório'),
+          city: yup.string().required('A cidade é obrigatória'),
+          province: yup.string().required('O estado é obrigatório')
+        })
+        schema.validateSync (
+          {
+            name: this.name,
+            email: this.email,
+            contact: this.contact,
+            date_birth: this.date_birth,
+            cep: this.cep,
+            number: this.number,
+            street: this.street,
+            neighborhood: this.neighborhood,
+            city: this.city,
+            province: this.province
+          },
+          { abortEarly:false }
+        )
+
+      } catch (error) {
+          if (error instanceof yup.ValidationError) {
+            console.log(error)
+
+            this.errorValidation = captureErrorYup(error)
+          }
+      }
+    },
+  }
 }
 </script>
