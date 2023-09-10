@@ -30,11 +30,20 @@
         <td>{{ student.id }}</td>
         <td>{{ student.name }}</td>
         <td>
-          <v-btn title="Clique para moontar um treino" prepend-icon="mdi-dumbbell" type="submit" >
+          <v-btn 
+          title="Clique para moontar um treino" 
+          prepend-icon="mdi-dumbbell" 
+          type="submit" 
+          @click="() => redirectStudentInformationTraining(student)">
           Treinos
           </v-btn>
 
-          <v-btn title="Vizualizar treino" variant="text" icon="mdi-eye-outline"></v-btn>
+          <v-btn 
+          title="Vizualizar treino" 
+          icon="mdi-eye-outline"
+          variant="text" 
+          @click="() => redirectStudentInformationView(student)">
+          </v-btn>
         </td>
       </tr>
     </tbody>
@@ -62,6 +71,35 @@ export default {
         return student.name.toLowerCase().includes(query);
       });
     },
+  },
+
+  methods: {
+    handleSubmitStudents() {
+      axios({
+        url: "http://localhost:3000/students",
+        method: "GET",
+      })
+        .then((response) => {
+          this.studentsList = response.data.students
+        })
+        .catch(() => {
+          alert("Erro procurar alunos na lista");
+        });
+    },
+
+    redirectStudentInformationTraining(student) {
+      this.$router.push({
+        path: `/cadastro/treino/${student.id}`,
+        query: {title: student.name}
+      })
+    },
+
+    redirectStudentInformationView(student) {
+      this.$router.push({
+        path: `/visualização-de-treinos/${student.id}`,
+        query: {title: student.name}
+      })
+    }
   },
 
   mounted() {
