@@ -11,10 +11,10 @@
     </div>
 
     <div>
-      <p>Hoje, {{ selectedDay }}</p>
+      <p>Hoje</p>
       <v-card>
         <v-card-text v-for="workout in markTrainingList" :key="workout.id">
-          <v-checkbox>
+          <v-checkbox v-model="markedWorkouts" :value="workout.id" @click="handleSubmitCheckbox(workout)">
             <template v-slot:label>
               {{ workout.exercise_description }} | {{  workout.weight }} kg | {{ workout.repetitions }} repetições | {{ workout.break_time }} segundos de pausa
             </template>
@@ -57,7 +57,7 @@ export default {
   data() {
     return {
       student_id: this.$route.params.id,
-      selectedWorkouts: [],
+      markedWorkouts: [],
       trainingList: [],
       selectedDay: this.getCurrentDay(),
       trainingDays: this.getCurrentDay(),
@@ -100,6 +100,24 @@ export default {
 
     filterByDay(day) {
       this.trainingDays = day;
+    },
+
+    handleSubmitCheckbox(workout) {
+      axios({
+        url: 'http://localhost:3000/workouts/check',
+        method: 'POST',
+        data: {
+          workout_id: workout.id,
+          student_id: this.student_id,
+          day_of_week: this.selectedDay,
+        },
+      })
+        .then(() => {
+          console.log('Exercício finalizado com sucesso!');
+        })
+        .catch(() => {
+          console.log('Erro na marcação de exercício finalizado com sucesso!');
+        });
     },
   },
 
