@@ -90,8 +90,11 @@
     class="input-observation px-2"
     />
   
-    <div class="d-flex justify-center">
-      <v-btn class="button d-flex ml-5" size="x-large" type="submit">Cadastrar</v-btn>
+    <div class="d-flex justify-end">
+      <router-link to="/gerenciamento/alunos">
+        <v-btn class="button-cancel ml-5" size="x-large">Cancelar</v-btn>
+      </router-link>
+      <v-btn class="button ml-5" size="x-large" type="submit">Cadastrar</v-btn>
     </div>
   </v-form>
 </template>
@@ -235,12 +238,12 @@ export default {
     background: linear-gradient(80deg, #1976D2, #1337B4);
   }
   .input-observation {
-    height: 200px;
+    height: 150px;
   }
 
   .button {
-    margin-top: -60px;
-    width: 300px;
+    margin-top: -45px;
+    width: 200px;
 
     text-transform: lowercase;
     font-weight: bold;
@@ -251,6 +254,24 @@ export default {
   }
 
   .button:hover {
+    background: black;
+    color: white;
+    box-shadow: 0 0 30px rgba(19, 55, 180, .5);
+  }
+
+  .button-cancel {
+    margin-top: -65px;
+    width: 200px;
+
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 18px;
+
+    background: linear-gradient(80deg, #BDBDBD, #616161);
+    cursor: pointer;
+  }
+
+  .button-cancel:hover {
     background: black;
     color: white;
     box-shadow: 0 0 30px rgba(19, 55, 180, .5);
