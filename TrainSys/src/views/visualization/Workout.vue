@@ -29,7 +29,7 @@
 
   <div>
     <div class="weekDay">
-      <v-btn class="button-weekDay overflow-visible" :height="50" rounded="0" @click="filterByDay('domingo')">Domingo</v-btn>
+      <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('domingo')">Domingo</v-btn>
       <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('segunda')">Segunda-feira</v-btn>
       <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('terca')">Terça-feira</v-btn>
       <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('quarta')">Quarta-feira</v-btn>
@@ -70,8 +70,6 @@ export default {
       trainingList: [],
       selectedDay: this.getCurrentDay(),
       trainingDays: this.getCurrentDay(),
-
-      active: false,
     };
   },
 
@@ -152,7 +150,6 @@ export default {
     text-transform: uppercase;
     font-size: 32px;
   }
-
   .icon {
     font-size: 100px;
   }
@@ -160,10 +157,13 @@ export default {
   hr{
   border: 1px solid;
   }
-  
   .checkbox {
     margin-bottom: 15px;
     height: 15px;
+  }
+
+  .title-table {
+    font-size: 18px;
   }
   .weekDay {
     display: flex;
@@ -171,7 +171,6 @@ export default {
 
     margin-top: 10px;
   }
-
   .button-weekDay {
     width: 200px;
 
@@ -184,8 +183,10 @@ export default {
     cursor: pointer;
   }
 
-  .title-table {
-    font-size: 18px;
+  .button-weekDay:hover {
+    background: black;
+    color: white;
+    box-shadow: 0 0 30px rgba(19, 55, 180, .5);
   }
 
 </style>
