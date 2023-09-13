@@ -2,19 +2,22 @@
   <router-view></router-view>
 
   <div>
-    <h1>Visualização de Treinos</h1>
-
-    <div>
-      <p> Dados do aluno</p>
-      <p>Matrícula: {{ student_id }}</p>
-      <p>Nome: {{ this.$route.query.title }}</p>
+    <div class="d-flex">
+      <v-icon class="icon ml-4 mt-2" icon="mdi-account-eye" size="x-large"></v-icon>
+      <div class="d-flex flex-column ml-3">
+        <h1 class="title mt-3">Vizualização de treinos semanais</h1>
+        <p>Matrícula: {{ student_id }}</p>
+        <p>Nome: {{ this.$route.query.title }}</p>
+      </div>
     </div>
 
+    <hr>
+
     <div>
-      <p>Hoje</p>
-      <v-card>
+      <h2 class="ml-6 mt-3">Hoje</h2>
+      <v-card class="d-flex flex-column">
         <v-card-text v-for="workout in markTrainingList" :key="workout.id">
-          <v-checkbox v-model="markedWorkouts" :value="workout.id" @click="handleSubmitCheckbox(workout)">
+          <v-checkbox class="checkbox" v-model="markedWorkouts" :value="workout.id" @click="handleSubmitCheckbox(workout)">
             <template v-slot:label>
               {{ workout.exercise_description }} | {{  workout.weight }} kg | {{ workout.repetitions }} repetições | {{ workout.break_time }} segundos de pausa
             </template>
@@ -25,25 +28,31 @@
   </div>
 
   <div>
-    <div class="day-filter">
-      <button @click="filterByDay('domingo')">Domingo</button>
-      <button @click="filterByDay('segunda')">Segunda-feira</button>
-      <button @click="filterByDay('terca')">Terça-feira</button>
-      <button @click="filterByDay('quarta')">Quarta-feira</button>
-      <button @click="filterByDay('quinta')">Quinta-feira</button>
-      <button @click="filterByDay('sexta')">Sexta-feira</button>
-      <button @click="filterByDay('sabado')">Sábado</button>
+    <div class="weekDay">
+      <v-btn class="button-weekDay overflow-visible" :height="50" rounded="0" @click="filterByDay('domingo')">Domingo</v-btn>
+      <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('segunda')">Segunda-feira</v-btn>
+      <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('terca')">Terça-feira</v-btn>
+      <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('quarta')">Quarta-feira</v-btn>
+      <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('quinta')">Quinta-feira</v-btn>
+      <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('sexta')">Sexta-feira</v-btn>
+      <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('sabado')">Sábado</v-btn>
     </div>
 
-    <v-table>
+    <v-table class="d-flex flex-column" density="compact">
       <thead>
-        <tr>
-          <th class="subtitle-table">Nome</th>
+        <tr class="title-table">
+          <th class="text-center">Nome do exercício</th>
+          <th class="text-center">Peso (kg)</th>
+          <th class="text-center">Quantidade de repetições</th>
+          <th class="text-center">Tempo de pausa (segundos)</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <tr v-for="workout in filtrateTrainingList" :key="workout.id">
-          <td>{{ workout.exercise_description }} | {{  workout.weight }} kg | {{ workout.repetitions }} repetições | {{ workout.break_time }} segundos de pausa</td>
+          <td>{{ workout.exercise_description }}</td>
+          <td>{{  workout.weight }}</td>
+          <td>{{ workout.repetitions }}</td>
+          <td>{{ workout.break_time }}</td>
         </tr>
       </tbody>
     </v-table>
@@ -61,6 +70,8 @@ export default {
       trainingList: [],
       selectedDay: this.getCurrentDay(),
       trainingDays: this.getCurrentDay(),
+
+      active: false,
     };
   },
 
@@ -137,11 +148,44 @@ export default {
 </script>
 
 <style scoped>
-.day-filter {
-  margin-top: 20px;
-}
+  .title {
+    text-transform: uppercase;
+    font-size: 32px;
+  }
 
-.day-filter button {
-  margin-right: 10px;
-}
+  .icon {
+    font-size: 100px;
+  }
+
+  hr{
+  border: 1px solid;
+  }
+  
+  .checkbox {
+    margin-bottom: 15px;
+    height: 15px;
+  }
+  .weekDay {
+    display: flex;
+    justify-content: space-around;
+
+    margin-top: 10px;
+  }
+
+  .button-weekDay {
+    width: 200px;
+
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+
+    background: linear-gradient(80deg, #1976D2, #1337B4);
+
+    cursor: pointer;
+  }
+
+  .title-table {
+    font-size: 18px;
+  }
+
 </style>
