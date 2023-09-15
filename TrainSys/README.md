@@ -18,9 +18,9 @@ TrainSys é um software destinado aos instrutores de academias com a função de
 
 ### Bibliotecas utilizadas
 
-- [Vuetify](https://vuetifyjs.com/en/) 
-- [Router](https://router.vuejs.org/)
-- [Yup](https://www.npmjs.com/package/yup)
+- [Vuetify](https://vuetifyjs.com/en/) versão 3.3.15
+- [Router](https://router.vuejs.org/) versão 4.2.4
+- [Yup](https://www.npmjs.com/package/yup) versão 1.2.0
 
 
 ## 🛠️ Criando e executando localmente o projeto
@@ -49,15 +49,29 @@ npm run dev
 ## ❌ Melhorias
 O TrainSys é um projeto em construção, desta forma, é bem-vindo modificações e melhorias que possibilite. Algumas destas melhorias são:
 
-- Immplementação de modo escuro: A visualização das informações é muito importante e cada individuo tem suas preferências conforme seu campo de visão, por exemplo, quem possui astigmatismo possui a dificuldade em enxergar em ambientes muito iluminados, desta forma, um ponto de melhoria é a implementação a opção de modo escuro, podendo alterar o fundo da tela entre claro e escuro (Dark/Light) que ajuda na visualização das informações conforme cada tipo de usuário; 
+- Implementação de modo escuro: A visualização das informações é muito importante e cada individuo tem suas preferências conforme seu campo de visão, por exemplo, quem possui astigmatismo possui a dificuldade em enxergar em ambientes muito iluminados, desta forma, um ponto de melhoria é a implementação a opção de modo escuro, podendo alterar o fundo da tela entre claro e escuro (Dark/Light) que ajuda na visualização das informações conforme cada tipo de usuário; 
 - Implementação de métrica e metas personalizadas: Este permiti ao instrutor e ao aluno registrar os resultados para progressão em direção ao objetivo estipulado; 
 - Construtor de programas de treinos: Este permiti montar o treino semanal e posteriormente designar a cada aluno, que irá potencializar a rotina diária e reduzir o tempo necessário para cadastro de treino a cada novo aluno;
 - Inclusão de tempo destinado ao treino cadasrado;
 - Painel de gerenciamento: Neste painel será possível visualizar a quantidade de alunos cadastrados coma ficha em andamento e aqueles que precisa de atualização de treino rumo ao seu objetivo.
 
 > [!NOTE]
-> Deixe o seu feedback! O que vocÊ acha que pode melhorar no projeto?
-
+> Deixe o seu feedback! O que você acha que pode melhorar no projeto?
 
 ## 👀 Veja o projeto
 
+![Página login](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/bc485480-1769-4cb9-b8c7-79848b2cc943)
+
+![Página de cadastro usuário](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/d9f38844-a487-4d2e-a149-7096ddb2b466)
+
+![Página Dashboard](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/defa5fe5-2e88-4aab-8811-0c55c83a19c7)
+
+![Página gerenciamento de exercícios](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/8b280295-f150-4f9c-a266-9828f827a774)
+
+![Página gerenciamento de alunos](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/91ee8a3f-6472-4ed7-bbab-c6df9198ad35)
+
+![Página Cadastro de alunos](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/02e10bcf-d0e6-4958-9d63-435818ea8774)
+
+![Página de cadastro de treinos](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/8ad879bb-2467-4c39-88f7-4969fb7d70cc)
+
+![Página visualização de treinos](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/f245ca54-cca9-485f-b696-548e91f9d203)
