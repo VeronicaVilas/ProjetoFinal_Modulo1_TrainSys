@@ -174,7 +174,7 @@ export default {
     margin-top: 10px;
   }
   .button-weekDay {
-    width: 190px;
+    width: 210px;
 
     text-transform: uppercase;
     font-weight: bold;
