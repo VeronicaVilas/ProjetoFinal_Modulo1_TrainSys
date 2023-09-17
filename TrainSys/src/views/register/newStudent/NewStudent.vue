@@ -292,7 +292,7 @@ export default {
   font-weight: bold;
   font-size: 18px;
 
-  background-color: #1337B4;
+  background: linear-gradient(80deg, #1976D2, #1337B4);
   cursor: pointer;
 }
 

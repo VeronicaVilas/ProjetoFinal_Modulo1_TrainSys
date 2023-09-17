@@ -37,7 +37,7 @@
       <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('sabado')">Sábado</v-btn>
     </div>
 
-    <v-table class="d-flex flex-column" density="compact">
+    <v-table class="table d-flex flex-column" density="compact">
       <thead>
         <tr class="title-table">
           <th class="text-center">Nome do exercício</th>
@@ -174,7 +174,7 @@ export default {
     margin-top: 10px;
   }
   .button-weekDay {
-    width: 200px;
+    width: 190px;
 
     text-transform: uppercase;
     font-weight: bold;
