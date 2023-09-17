@@ -91,6 +91,6 @@ O TrainSys é um projeto em construção, desta forma, é bem-vindo modificaçõ
 
 ![Página Cadastro de alunos](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/02e10bcf-d0e6-4958-9d63-435818ea8774)
 
-![Página de cadastro de treinos](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/8ad879bb-2467-4c39-88f7-4969fb7d70cc)
+![Página de cadastro de treinos](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/a138b372-9618-420e-b41c-a956124550fb)
 
-![Página visualização de treinos](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/f245ca54-cca9-485f-b696-548e91f9d203)
+![Página visuaização de treinos](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/fb0363b5-7244-4f28-998b-207c21771c6a)
