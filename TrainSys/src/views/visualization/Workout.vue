@@ -1,5 +1,4 @@
 <template>
-  <router-view></router-view>
 
   <div>
     <div class="d-flex">
@@ -14,7 +13,7 @@
     <hr>
 
     <div>
-      <h2 class="ml-6 mt-3">Hoje</h2>
+      <h2 class="ml-6 mt-3">Hoje, {{ selectedDay.text }}</h2>
       <v-card class="d-flex flex-column">
         <v-card-text v-for="workout in markTrainingList" :key="workout.id">
           <v-checkbox class="checkbox" v-model="markedWorkouts" :value="workout.id" @click="handleSubmitCheckbox(workout)">
@@ -38,7 +37,7 @@
       <v-btn class="button-weekDay" :height="50" rounded="0" @click="filterByDay('sabado')">Sábado</v-btn>
     </div>
 
-    <v-table class="d-flex flex-column" density="compact">
+    <v-table class="table d-flex flex-column" density="compact">
       <thead>
         <tr class="title-table">
           <th class="text-center">Nome do exercício</th>
@@ -78,14 +77,14 @@ export default {
       if (!this.selectedDay) {
         return this.trainingList;
       }
-      return this.trainingList.filter((workout) => workout.day === this.selectedDay);
+      return this.trainingList.filter((workout) => workout.day === this.selectedDay.value);
     },
 
     filtrateTrainingList() {
       if (!this.trainingDays) {
         return this.trainingList;
       }
-      return this.trainingList.filter((workout) => workout.day === this.trainingDays);
+      return this.trainingList.filter((workout) => workout.day === this.trainingDays.value);
     },
   },
 
@@ -94,21 +93,24 @@ export default {
       const value = new Date().getDay()
       
       const daysWeek = [
-        {value: 'domingo', number: 0},
-        {value: 'segunda', number: 1},
-        {value: 'terca', number: 2},
-        {value: 'quarta', number: 3},
-        {value: 'quinta', number: 4},
-        {value: 'sexta', number: 5},
-        {value: 'sabado', number: 6}
+        {value: 'domingo', text: 'Domingo', number: 0},
+        {value: 'segunda', text: 'Segunda-feira', number: 1},
+        {value: 'terca', text: 'Terça-feira', number: 2},
+        {value: 'quarta', text: 'Quarta-feira', number: 3},
+        {value: 'quinta', text: 'Quinta-feira', number: 4},
+        {value: 'sexta', text: 'Sexta-feira', number: 5},
+        {value: 'sabado', text: 'Sábado', number: 6}
       ]
       const option = daysWeek.find(item => item.number === value)
 
-      return option.value
+      return {
+        value: option ? option.value : '',
+        text: option ? option.text : '',
+      }
     },
 
     filterByDay(day) {
-      this.trainingDays = day;
+      this.trainingDays.value = day;
     },
 
     handleSubmitCheckbox(workout) {
@@ -167,12 +169,12 @@ export default {
   }
   .weekDay {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 
     margin-top: 10px;
   }
   .button-weekDay {
-    width: 200px;
+    width: 210px;
 
     text-transform: uppercase;
     font-weight: bold;
@@ -188,5 +190,4 @@ export default {
     color: white;
     box-shadow: 0 0 30px rgba(19, 55, 180, .5);
   }
-
 </style>

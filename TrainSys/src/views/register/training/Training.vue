@@ -120,7 +120,8 @@ export default {
         {dayWeek: 'Terça-feira', value: 'terca'},
         {dayWeek: 'Quarta-feira', value: 'quarta'},
         {dayWeek: 'Quinta-feira', value: 'quinta'},
-        {dayWeek: 'Sexta-feira', value: 'sabado'},
+        {dayWeek: 'Sexta-feira', value: 'sexta'},
+        {dayWeek: 'Sábado', value: 'sabado'},
         {dayWeek: 'Domingo', value: 'domingo'},
       ],
       exercises: [],
@@ -137,11 +138,11 @@ export default {
       const daysWeek = [
         {value: 'domingo', number: 0},
         {value: 'segunda', number: 1},
-        {value: 'terça', number: 2},
+        {value: 'terca', number: 2},
         {value: 'quarta', number: 3},
         {value: 'quinta', number: 4},
         {value: 'sexta', number: 5},
-        {value: 'sábado', number: 6}
+        {value: 'sabado', number: 6}
       ]
       const option = daysWeek.find(item => item.number === value)
 

@@ -1,12 +1,14 @@
+![Imagem do projeto TrainSys com o logo da DEVinHouse Zucchetti](https://github.com/VeronicaVilas/ProjetoTrainSys/assets/135287830/b939883d-1e61-4251-b0cb-ee105c49f381)
 
 # TrainSys
-
 TrainSys é um software destinado aos instrutores de academias com a função de descomplicar a gestão de alunos e treinos otimizando, desta forma, o seu trabalho diário. Ele foi especialmente desenvolvido para visualização de dados em desktop.
+
+Este é um projeto desenvolvido para o curso DEVinHouse ministrado pelo Senai (Serviço Nacional de Aprendizagem Industrial) em parceria com a Zucchetti.
 
 ## 🔨 Funcionalidades do projeto
 
 - `Funcionalidade 1` `Cadastro e login de usuários`: O software está apto a cadastrar e logar os instrutores de academia associando seu nome na tela principal. Para cadastrar um instrutor, devem ser informados um e-mail válido, seu nome completo, informar uma senha e escolher um plano, estando dividos entre bronze, prata e ouro. Todos os campos são obrigatórios. O sistema também deve gravar estes dados pois o email e a senha serão utilizadas para entrar na pagina de gerenciamento.
-- `Funcionalidade 2``Gerenciamento de Exercícios e alunos`: O sistema agrupa na tela home a quantidade de exercícios e alunos cadastrados podendo ser visualizado em listas todos os mesmos. As telas de gestão permite ao instrutor inserir o exercício no sistema conforme seu interesse. Em contrapartida, a lista de alunos cadastrados permite, pensando em otimizar o tempo, a busca pelo nome do aluno tirando a necessidade de realizar a busca em uma ampla lista.
+- `Funcionalidade 2` `Gerenciamento de Exercícios e alunos`: O sistema agrupa na tela home a quantidade de exercícios e alunos cadastrados podendo ser visualizado em listas todos os mesmos. As telas de gestão permite ao instrutor inserir o exercício no sistema conforme seu interesse. Em contrapartida, a lista de alunos cadastrados permite, pensando em otimizar o tempo, a busca pelo nome do aluno tirando a necessidade de realizar a busca em uma ampla lista.
 - `Funcionalidade 2a` `Cadastro de alunos`: Para cadastrar um aluno, onde os dados informados são os utilizados para a listagem e gerenciamento de alunos, devem ser informados um e-mail válido, seu nome completo, contato e data de aniversário. Somente o nome e contato é obrigátorios. POsteriormente é preciso informar um cep válido, para cadastro do endereço, que será utilizado para busca do logradouro, bairro, cidade e estado através do ViaCep.
 - `Funcionalidade 3` `Cadastro e visualização de Treinos`: O cadastro de visualização de treinos é realizado para o aluno especifico solicitado pelo instrutor através do parâmetro de rota dinâmica. Ao selecionar o mesmo pode escolher entre montar ou visualizar o treino, sendo a pagina de visualização depende do cadastro de treinos realizados. Para cadastrar o treino é preciso selecionar o exercicio, que na funcionalidade 2, a quantidade de repetições, o peso, tempo de pausa e escolher qual o dia da semana que será executado, além disso possui um campo de observações. Somente o campo de observação que é opcional. Ao vizualizar, sempre irá mostrar na parte superior o treino cadastrado para o dia, conforme o dia da semana, este valor altera todo dia. 
 
@@ -46,6 +48,23 @@ O npm install é utilizado para instalar algumas dependências que o arquivopack
 ```bash
 npm run dev
 ```
+
+Para este projeto, é necessário também utilizar a API (Application Programming Interface) que é o software responsável por hospedar localmente os as solicitação, como por exemplo o cadastro de usuário, e receber informar a resposta. A api já está inclusa no momento da clonagem do código e para utiliza-lá basta seguir os passos a seguir:
+
+1. Abra a API em um nova janela
+
+2. Instale dependências de desenvolvimento:
+
+```bash
+npm install
+```
+
+3. Execute:
+
+```bash
+npm run server
+```
+
 ## ❌ Melhorias
 O TrainSys é um projeto em construção, desta forma, é bem-vindo modificações e melhorias que possibilite. Algumas destas melhorias são:
 
