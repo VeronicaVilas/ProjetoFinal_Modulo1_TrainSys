@@ -48,6 +48,23 @@ O npm install é utilizado para instalar algumas dependências que o arquivopack
 ```bash
 npm run dev
 ```
+
+Para este projeto, é necessário também utilizar a API (Application Programming Interface) que é o software responsável por hospedar localmente os as solicitação, como por exemplo o cadastro de usuário, e receber informar a resposta. A api já está inclusa no momento da clonagem do código e para utiliza-lá basta seguir os passos a seguir:
+
+1. Abra a API em um nova janela
+
+2. Instale dependências de desenvolvimento:
+
+```bash
+npm install
+```
+
+3. Execute:
+
+```bash
+npm run server
+```
+
 ## ❌ Melhorias
 O TrainSys é um projeto em construção, desta forma, é bem-vindo modificações e melhorias que possibilite. Algumas destas melhorias são:
 
